@@ -1,7 +1,8 @@
 package com.example.graphql;
 
 import com.example.graphql.exception.GraphQLErrorAdapter;
-import com.example.graphql.repository.AuthorRepository;
+import com.example.graphql.repository.ArticleRepository;
+import com.example.graphql.repository.UserRepository;
 import com.example.graphql.resolver.Mutation;
 import com.example.graphql.resolver.Query;
 import graphql.ExceptionWhileDataFetching;
@@ -50,14 +51,14 @@ public class GraphqlApplication {
 
 
 	@Bean
-	public Query query(AuthorRepository authorRepository) {
-		return new Query(authorRepository);
+	public Query query(UserRepository userRepository) {
+		return new Query(userRepository);
 	}
 
 
 	@Bean
-	public Mutation mutation(AuthorRepository authorRepository) {
-		return new Mutation(authorRepository);
+	public Mutation mutation(UserRepository userRepository, ArticleRepository articleRepository) {
+		return new Mutation(userRepository,articleRepository);
 	}
 
 }

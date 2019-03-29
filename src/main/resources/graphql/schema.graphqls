@@ -1,0 +1,48 @@
+type Query {
+    users: [User]!
+    findUserById(id: String): User!
+    findUserByName(name: String): [User]!
+}
+
+type Mutation {
+    createUser(name: String!, age:Int, gender:Gender, article:ArticleInfo): User!
+    updateUser(id: ID, userInfo: UserInfo!): User!
+    deleteUser(id: ID): User!
+}
+
+type Article {
+    id: ID!
+    content: String
+    isPublished: Boolean
+}
+
+type User implements UserInterface {
+    id: ID!
+    name: String!
+    age: Int
+    gender: Gender
+    article: Article
+}
+
+interface UserInterface {
+    id: ID!
+    name: String!
+    age: Int
+    gender: Gender
+}
+
+enum Gender {
+    MAN
+    WOMAN
+}
+
+input UserInfo {
+    name: String
+    age: Int
+    gender: Gender
+}
+
+input ArticleInfo {
+    content: String
+    isPublished: Boolean
+}

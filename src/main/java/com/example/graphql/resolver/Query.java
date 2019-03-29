@@ -1,21 +1,30 @@
 package com.example.graphql.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.example.graphql.model.Author;
-import com.example.graphql.repository.AuthorRepository;
+import com.example.graphql.po.User;
+import com.example.graphql.repository.UserRepository;
 
 public class Query implements GraphQLQueryResolver {
-    private AuthorRepository authorRepository;
+    private UserRepository userRepository;
 
-    public Query(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
+    public Query(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public Iterable<Author> findAllAuthors() {
-        return authorRepository.findAll();
+    public Iterable<User> users() {
+        return userRepository.findAll();
     }
 
     public long countAuthors() {
-        return authorRepository.count();
+        return userRepository.count();
+    }
+
+    public User findUserById(String id){
+        return userRepository.findById(id);
+    }
+
+    public Iterable<User> findUserByName(String lastName){
+        return userRepository.findByName(lastName);
     }
 }
+
